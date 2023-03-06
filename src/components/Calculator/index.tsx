@@ -1,73 +1,49 @@
 import { Text, View, TouchableOpacity } from 'react-native'
 import Style from './style'
+import CONST from '../../constants/key'
+import { connect } from 'react-redux';
+import { countAction } from '../../redux/actions/calculatorAction'
 
 const CalculatorScreen = (props: any) => {
+    const callToCalculatorAction = (item: string)  => {
+        props.countAction(item)
+    }
+    let items = CONST.CALCULATE_KEYS.map((item, index) => {
+        return <TouchableOpacity style={[
+                    Style.button,
+                    index == 16 ? Style.buttonZero : {}
+                ]} key={index} onPress={() => callToCalculatorAction(item)}>
+                    <Text style={[
+                            Style.btnText, 
+                            [3, 7, 11, 15, 18].indexOf(index) != -1 ? 
+                                (props.calculateData.clicked == item && index != 18 ? Style.btnClicked : Style.key) : {}
+                        ]} 
+                        >{ item }</Text>
+                </TouchableOpacity>
+    })
+
     return (
         <View style={Style.container}>
             <View style={Style.screen}>
-                <Text style={Style.show}>0</Text>
+                <Text style={Style.show}>{ props.calculateData.display }</Text>
             </View>
             <View style={Style.listButton}>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>AC</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>±</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>%</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[Style.button]}>
-                    <Text style={[Style.btnText, Style.key]}>÷</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>7</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>8</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>9</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={[Style.btnText, Style.key]}>x</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>4</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>5</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>6</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={[Style.btnText, Style.key]}>-</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>1</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>2</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>3</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={[Style.btnText, Style.key]}>+</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={[Style.button, Style.buttonZero]}>
-                    <Text style={Style.btnText}>0</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={Style.btnText}>.</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={Style.button}>
-                    <Text style={[Style.btnText, Style.key]}>=</Text>
-                </TouchableOpacity>
+                {
+                    items.map(view => {
+                        return view
+                    })
+                }
             </View>
         </View>
     );
 }
+// show
+const mapStateToProps = (reducer: any) => ({
+    calculateData: reducer.calculateReducer,
+});
+// action
+const mapDispatchToProps = (dispatch: Function) => ({
+    countAction: countAction(dispatch)
+});
 
-export default CalculatorScreen
+export default connect(mapStateToProps, mapDispatchToProps)(CalculatorScreen);

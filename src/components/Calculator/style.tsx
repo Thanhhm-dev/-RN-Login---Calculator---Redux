@@ -50,6 +50,10 @@ const Styles = StyleSheet.create({
         verticalAlign: 'middle',
         width: '100%',
         textAlign: 'center'
+    },
+    btnClicked: {
+        backgroundColor: '#ffffff',
+        color: '#fe9505'
     }
 });
 
