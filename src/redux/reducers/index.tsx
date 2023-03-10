@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux'
 import calculatorReducer from './calculatorReducer'
+import imageReducer from './imageReducer'
 
 export default combineReducers({
-    calculateReducer: calculatorReducer 
+    calculateReducer: calculatorReducer,
+    imageReducer: imageReducer
 })

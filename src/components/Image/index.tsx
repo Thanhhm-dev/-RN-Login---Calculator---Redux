@@ -1,15 +1,49 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CONST from '../../constants/key'
 import Style from './style'
+import axios from 'axios'
+import { saveUriAction } from '../../redux/actions/imageAction'
+import { connect } from 'react-redux'
+import TextCount from './countDown'
 
 const ImageScreen = (props: any) => {
-    const [img, setImg] = useState<{ uri: string }>({ uri: 'https://reactjs.org/logo-og.png' })
+    useEffect(() => {
+        const getImg = setTimeout(() => {
+            console.log(props.position)
+            axios(CONST.IMG_URL).then(value => {
+                if (value.data?.status) {
+                    props.saveUriAction(value.data)
+                }
+            });
+        }, CONST.IMGAE_TIME)
+        if (props.position == CONST.IMAGE_MAX_SHOW) {
+            clearInterval(getImg)
+        } 
+        
+    }, [props.position])
 
     const logout = (navigation: any) => {
         AsyncStorage.removeItem(CONST.USER_HANDLE_LOGIN).then(() => {
             navigation.navigate('Login')
+        })
+    }
+
+    const showImageDog = () => {
+        return props.listImg.map((source: { uri: string }, index: number) => {
+            if (source.uri != '') {
+                return <View style={Style.currentImg} key={index}>
+                    <Image source={source} style={Style.dogImage}></Image>
+                </View>
+            }
+            return <View style={Style.currentImg} key={index}>
+                <View style={Style.dogImage}>
+                    {
+                        props.position == index ? <TextCount position={props.position} /> : <Text style={Style.countDow}>waiting...</Text>
+                    }
+                </View>
+            </View>
         })
     }
 
@@ -31,38 +65,19 @@ const ImageScreen = (props: any) => {
                 </View>
             </View>
             <View style={Style.apiImage}>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.dogImage}></Image>
-                </View>
-                <View style={Style.currentImg}>
-                    <View style={Style.dogImage}>
-                        <Text style={Style.countDow}>waiting</Text>
-                    </View>
-                </View> 
+                {
+                    showImageDog()
+                }
             </View>
         </View>
     );
 }
+const mapStateToProps = (reducer: any) => ({
+    listImg: reducer.imageReducer.listImg,
+    position: reducer.imageReducer.position
+});
+const mapDispatchToProps = (dispatch: Function) => ({
+    saveUriAction: saveUriAction(dispatch)
+});
 
-export default ImageScreen
+export default connect(mapStateToProps, mapDispatchToProps)(ImageScreen)
