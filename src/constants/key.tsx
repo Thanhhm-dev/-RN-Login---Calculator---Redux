@@ -16,5 +16,8 @@ export default {
     SPECIAL_KEYS: {
         '÷': '/', 
         'x': '*'
-    }
+    },
+    USER_INIT: { email: '', password: '' },
+    USER_REGIST_TMP: 'user_regist',
+    USER_HANDLE_LOGIN: 'hanlde_login'
 }

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "888453601211",
+    "project_id": "rn-login-8990b",
+    "storage_bucket": "rn-login-8990b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:888453601211:android:1f065aa4928c90fbc6d69e",
+        "android_client_info": {
+          "package_name": "com.rn_login_img"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "888453601211-9u0idd9p8a3kk4q4ipqk5p5386jb1ifs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAy365XP92pRDmBn3UUj49hAmPhG-LGW6M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "888453601211-9u0idd9p8a3kk4q4ipqk5p5386jb1ifs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

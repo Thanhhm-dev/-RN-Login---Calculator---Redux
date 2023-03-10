@@ -1,26 +1,17 @@
 import { useEffect, useState } from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import CustomConstant from '../../constants/key'
+import CONST from '../../constants/key'
 import Style from './style'
 
 const ImageScreen = (props: any) => {
     const [img, setImg] = useState<{ uri: string }>({ uri: 'https://reactjs.org/logo-og.png' })
 
     const logout = (navigation: any) => {
-        AsyncStorage.removeItem(CustomConstant.IMG_KEY).then(() => {
+        AsyncStorage.removeItem(CONST.USER_HANDLE_LOGIN).then(() => {
             navigation.navigate('Login')
         })
     }
-
-    useEffect(() => {
-        AsyncStorage.getItem(CustomConstant.IMG_KEY).then(value => {
-            if (value) {
-                let tmp = { uri: value }
-                setImg(tmp)
-            }
-        })
-    }, []);
 
     return (
         <View style={Style.container}>
