@@ -1,4 +1,6 @@
 import { StyleSheet } from 'react-native'
+import { Dimensions } from 'react-native';
+const width = Dimensions.get('window').width
 
 const Styles = StyleSheet.create({
     container: {
@@ -6,14 +8,13 @@ const Styles = StyleSheet.create({
     },
     img: {
         width: '25%', 
-        height: 100,
+        height: width/4,
         alignSelf: 'center',
         borderStartWidth: 1,
-        borderRadius: 50
+        borderRadius: 100
     },
-    
     userImage: {
-        flex: 2
+        flex: 3
     },
     btnLogout: {
         flex: 1,
@@ -46,7 +47,7 @@ const Styles = StyleSheet.create({
         color: 'red'
     },
     apiImage: {
-        flex: 4,
+        flex: 5,
         backgroundColor: '#e7e7e7',
         flexDirection: 'row',
         flexWrap: 'wrap',

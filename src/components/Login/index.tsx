@@ -1,14 +1,11 @@
 import { ScrollView, TouchableOpacity, Text, TextInput, View, Image, Alert } from 'react-native'
 import { useEffect, useRef } from 'react'
-import axios from 'axios'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Style from './style'
 import CONST from '../../constants/key'
 import auth from '@react-native-firebase/auth';
 import { useIsFocused } from '@react-navigation/native';
-
-const IMG_URL = 'https://dog.ceo/api/breeds/image/random'
 
 const Login = (props: any) => {
     const form = useRef(CONST.USER_INIT)
