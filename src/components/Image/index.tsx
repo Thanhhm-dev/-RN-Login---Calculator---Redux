@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { View, Image, Text, TouchableOpacity } from 'react-native'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import CONST from '../../constants/key'
@@ -7,6 +7,7 @@ import axios from 'axios'
 import { saveUriAction } from '../../redux/actions/imageAction'
 import { connect } from 'react-redux'
 import TextCount from './countDown'
+import Avatar from './avatar'
 
 const ImageScreen = (props: any) => {
     useEffect(() => {
@@ -20,11 +21,11 @@ const ImageScreen = (props: any) => {
         }, CONST.IMGAE_TIME)
         if (props.position == CONST.IMAGE_MAX_SHOW) {
             clearInterval(getImg)
-        } 
-        
+        }
     }, [props.position])
 
     const logout = (navigation: any) => {
+        AsyncStorage.removeItem(CONST.USER_INFO)
         AsyncStorage.removeItem(CONST.USER_HANDLE_LOGIN).then(() => {
             navigation.navigate('Login')
         })
@@ -55,14 +56,7 @@ const ImageScreen = (props: any) => {
                         <Text style={[Style.buttonText, Style.buttonColor]}>Logout</Text>
                     </TouchableOpacity>
                 </View>
-                <View style={Style.mainImg}>
-                    <Image source={{ uri: 'https://reactjs.org/logo-og.png' }} style={Style.img} ></Image>
-                </View>
-                <View style={Style.btnUpdate}>
-                    <TouchableOpacity style={Style.button} >
-                        <Text style={Style.buttonText}>Update</Text>
-                    </TouchableOpacity>
-                </View>
+                <Avatar/>
             </View>
             <View style={Style.apiImage}>
                 {

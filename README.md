@@ -5,3 +5,6 @@ https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/1/files
 https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/2/files
 3. Login firebase android
 https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/3/files
+4. Get IMG
+https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/4/files
+5.
