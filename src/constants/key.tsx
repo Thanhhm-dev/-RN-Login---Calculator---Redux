@@ -21,6 +21,8 @@ export default {
     USER_INIT: { email: '', password: '' },
     USER_REGIST_TMP: 'user_regist',
     USER_HANDLE_LOGIN: 'hanlde_login',
+    USER_INFO: 'user_info',
+    USER_TABLE: 'users',
     IMAGE_INIT: {
         listImg: [
             { uri: '' },

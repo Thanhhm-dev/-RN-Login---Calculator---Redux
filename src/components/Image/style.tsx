@@ -13,6 +13,9 @@ const Styles = StyleSheet.create({
         borderStartWidth: 1,
         borderRadius: 100
     },
+    containerImg: {
+        flex: 3
+    },
     userImage: {
         flex: 3
     },

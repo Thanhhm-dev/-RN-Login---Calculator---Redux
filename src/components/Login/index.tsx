@@ -52,9 +52,11 @@ const Login = (props: any) => {
             return;
         }
         auth().signInWithEmailAndPassword(form.current.email, form.current.password)
-            .then(async () => {
+            .then(async (firebaseUser) => {
                 form.current = CONST.USER_INIT
-                return navigation.navigate('Home')
+                AsyncStorage.setItem(CONST.USER_INFO, firebaseUser.user.uid).then(() => {
+                    return navigation.navigate('Home')
+                });
             })
             .catch(error => {
                 Alert.alert('Login failed!', 'Please try again')
