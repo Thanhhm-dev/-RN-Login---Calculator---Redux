@@ -7,4 +7,5 @@ https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/2/files
 https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/3/files
 4. Get IMG
 https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/4/files
-5.
+5. Upload img fire base
+https://github.com/Thanhhm-dev/-RN-Login---Calculator---Redux/pull/5/files
